@@ -199,6 +199,120 @@ A valid proof would need to:
 
 Until this theorem is supplied, the Riemann-zero/Mayer-eigenvalue correspondence remains a research conjecture or an unverified proposed connection, not a result of the present derivation.
 
+## Corrected Part I — The Selberg–Riemann zero correspondence
+
+### 5.1 The scattering coefficient
+
+For the modular surface
+\[
+X=\mathrm{PSL}(2,\mathbb Z)\backslash\mathbb H,
+\]
+the Eisenstein scattering coefficient is
+\[
+\varphi(s)=
+\sqrt{\pi}\,
+\frac{\Gamma(s-\frac12)}{\Gamma(s)}
+\frac{\zeta(2s-1)}{\zeta(2s)}
+=
+\frac{s}{s-1}\frac{\xi(2s-1)}{\xi(2s)}.
+\]
+
+A non-trivial zero \(\rho\) of the Riemann zeta function produces a scattering pole at
+\[
+s_0=\frac{\rho}{2},
+\]
+provided the corresponding numerator does not vanish at the same point.
+
+### 5.2 Independent zero-divisor theorem
+
+The Selberg trace-formula spectral theory for the modular group supplies an independent characterization of the zeros of the Selberg zeta function. In particular, its zero divisor includes:
+
+1. The discrete-spectrum zeros
+   \[
+   s=\frac12\pm ir_n,
+   \]
+   corresponding to the discrete eigenvalues of the hyperbolic Laplacian.
+
+2. The scattering-related zeros
+   \[
+   s=\frac{\rho}{2},
+   \]
+   where \(\rho\) ranges over non-trivial zeros of the Riemann zeta function.
+
+The multiplicity of the latter zero agrees with the multiplicity of the corresponding Riemann zero, subject to the usual treatment of coincident factors and cancellations.
+
+This is a theorem about the zero divisor of the modular-group Selberg zeta function, not an inference from the functional equation for an unfactored ratio.
+
+### 5.3 Logarithmic derivative
+
+Let \(m_\rho\) be the multiplicity of \(\rho\). The local factorization at \(s_0=\rho/2\) gives
+\[
+Z_{\mathrm{Sel}}(s)
+=
+\left(s-\frac{\rho}{2}\right)^{m_\rho}G_\rho(s),
+\qquad
+G_\rho(\rho/2)\ne0.
+\]
+
+Consequently,
+\[
+\boxed{
+\operatorname*{Res}_{s=\rho/2}
+\frac{Z_{\mathrm{Sel}}'(s)}{Z_{\mathrm{Sel}}(s)}
+=m_\rho.
+}
+\]
+
+The trace-formula logarithmic derivative therefore records the Riemann-zero component of the Selberg divisor directly.
+
+### 5.4 Mayer transfer-operator consequence
+
+Under the determinant identity
+\[
+Z_{\mathrm{Sel}}(s)
+=
+\det(I-\mathcal L_s^2)
+=
+\det(I-\mathcal L_s)\det(I+\mathcal L_s),
+\]
+with the appropriate nuclearity and determinant hypotheses, one obtains
+\[
+Z_{\mathrm{Sel}}(\rho/2)=0
+\quad\Longrightarrow\quad
+1\in\sigma(\mathcal L_{\rho/2})
+\quad\text{or}\quad
+-1\in\sigma(\mathcal L_{\rho/2}).
+\]
+
+Thus the half-scaled Riemann zeros are encoded in the \(\pm1\) spectral condition of the Mayer transfer operator.
+
+This conclusion is conditional on the exact Mayer–Selberg determinant identity in the chosen operator normalization. It does not identify which of the two eigenvalues occurs without further spectral information.
+
+### 5.5 RH and the half-scaled spectral line
+
+Under RH,
+\[
+\rho=\frac12+i\gamma,
+\]
+so
+\[
+\frac{\rho}{2}=\frac14+i\frac{\gamma}{2}.
+\]
+
+Therefore the Riemann-zero component of the Selberg divisor lies on
+\[
+\operatorname{Re}s=\frac14
+\]
+if and only if RH holds.
+
+This is a spectral encoding of RH, not a proof of RH.
+
+### 5.6 Functional-equation argument: retained as supplementary consistency check
+
+The functional equation remains useful for checking the symmetry and normalization of the Selberg zeta function. However, the zero correspondence above is established independently through the spectral zero-divisor theorem and the trace-formula logarithmic derivative.
+
+The earlier objection concerning poles of an unfactored ratio is therefore not the obstruction to the modular-group correspondence. It was an objection to the sufficiency of that particular argument. The independent divisor theorem supplies the missing information.
+
 ---
 
 # Part II. Friedrichs complex deformation and semigroup claims
@@ -490,6 +604,11 @@ The following statements are not established by the previous arguments:
 6. Construct the canonical product only after the complete zero divisor and order are known.
 7. Separate any theorem about Selberg zeros from the still-open Riemann Hypothesis.
 
+### Revised status of Task B
+
+Task B is no longer classified as an unresolved conjectural bridge.
+
+For the modular group, the Selberg trace-formula zero-divisor theorem provides the required correspondence between non-trivial Riemann zeros and Selberg zeros at (s=\rho/2). The remaining task in the Mayer programme is to verify the exact Fredholm determinant identity and its operator hypotheses in the chosen transfer-operator realization, and then to determine the relevant (\pm1) eigenspace structure.
 ---
 
 **Final status:** This corrigendum restores a defensible mathematical boundary between physical spectrum, analytically continued resonances, complex-scaled eigenvalues, contractive semigroups, and Fredholm-determinant zeros. It preserves the promising operator-theoretic direction while withdrawing conclusions that the current derivations do not yet support.
