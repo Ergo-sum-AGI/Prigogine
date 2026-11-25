@@ -1,0 +1,252 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Det}{\operatorname{det}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Li}{\operatorname{Li}}
+\newcommand{\Arg}{\operatorname{arg}}
+\newcommand{\Real}{\operatorname{Re}}
+\newcommand{\Imag}{\operatorname{Im}}
+
+\title{\textbf{Spectral Determinants, Dynamical Zeta Functions, and the Riemann Zeta Analog in Non-Hermitian and Star-Unitary Dynamics}\\[0.4em]
+\large Research Note II}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Building on the transfer-operator and star-unitary analysis of the Friedrichs model established in Research Note~I, we formulate the Fredholm spectral determinants and dynamical zeta functions associated with non-unitary spectral deformations. We derive the exact Weinstein--Aronszajn perturbation determinant and quantum scattering zeta function $\zeta_{\mathrm{Fr}}(z) = \eta_-(z)/\eta_+(z)$ of the Friedrichs model, demonstrating an exact pole--zero reflection symmetry across the continuous spectrum. We then establish a systematic dictionary connecting $\zeta_{\mathrm{Fr}}(z)$, Ruelle's periodic-orbit dynamical zeta function $\zeta_D(z)$, and the Euler product of the Riemann zeta function $\zeta(s)$. Finally, we examine how Prigogine's non-unitary similarity transformation $\Phi = \Lambda^{-1}L\Lambda$ resolves continuous-spectrum obstructions analogous to those arising in the Berry--Keating $xp$ quantization and the Riemann--von Mangoldt explicit formula. Appendix~\ref{app:mayer} provides a self-contained derivation of Mayer's nuclear Gauss--Kuzmin--Wirsing (GKW) transfer operator $\mathcal{L}_s$ and compares its Fredholm determinant $\det(1 - \mathcal{L}_s^2)$ directly with the Friedrichs dispersion function $\eta(z)$.
+\end{abstract}
+
+\section{From Transfer-Operator Spectra to Spectral Determinants}
+
+In Research Note~I, we demonstrated that passing from the unitary Liouville propagator $\mathcal{U}_\tau = e^{-iL\tau}$ on Hilbert--Schmidt space $\mathcal{B}_2(\mathcal{H})$ to a Hardy-class rigged Liouville space $\mathcal{B}_-$ (or Prigogine's star-unitary representation $\Phi = \Lambda^{-1}L\Lambda$ \cite{Prigogine1977}) exposes isolated complex \emph{Ruelle--Pollicott resonances} $\{\zeta_n\}$ in the lower half-plane $\Imag \zeta_n < 0$.
+
+For any trace-class (or Grothendieck nuclear) transfer operator $\widehat{\mathcal{L}}_\tau = e^{-i\widehat{L}\tau}$ acting on a Banach or Fr\'echet space of analytic test states, the discrete resonance spectrum is encoded inside the \textbf{Fredholm spectral determinant}:
+\begin{equation}
+D(\tau; w) = \Det\left(I - w \widehat{\mathcal{L}}_\tau\right) = \prod_{n=0}^{\infty} \left(1 - w \mu_n(\tau)\right)^{m_n}, \qquad \mu_n(\tau) = e^{-i\zeta_n \tau},
+\end{equation}
+where $\{\zeta_n\}$ are the eigenvalues of the effective generator $\widehat{L}$ with algebraic multiplicities $m_n$. Setting $w = e^{iz\tau}$ and taking the infinitesimal generator limit $\tau \to 0^+$ yields the \textbf{regularized spectral determinant} of the generator $\widehat{L}$:
+\begin{equation}
+\Delta_{\widehat{L}}(z) = \Det_{\mathrm{reg}}\left(z - \widehat{L}\right) \propto \prod_{n=0}^{\infty} \left(z - \zeta_n\right)^{m_n} E_n(z),
+\end{equation}
+where $E_n(z)$ are Weierstrass primary factors ensuring absolute convergence. Consequently, the \textbf{zeros of the spectral determinant} $\Delta_{\widehat{L}}(z) = 0$ coincide identically with the \textbf{Ruelle--Pollicott resonance eigenvalues} $z = \zeta_n$.
+
+\section{The Friedrichs Model Zeta Function and Scattering Determinant}
+
+In the single-excitation sector of the Friedrichs model \cite{Prigogine1977}, a discrete bare state $\lvert 1\rangle$ of energy $\omega_1 > 0$ is coupled to a continuous bath $\{\lvert \omega\rangle\}_{\omega \in [0,\infty)}$ via $H = H_0 + \lambda V$. Because $V = \lambda \int_0^\infty (V(\omega)\lvert 1\rangle\langle \omega\rvert + V^*(\omega)\lvert \omega\rangle\langle 1\rvert)\,d\omega$ is a rank-two perturbation, the Weinstein--Aronszajn perturbation determinant comparing the interacting Hamiltonian $H$ with the unperturbed Hamiltonian $H_0$ is given in closed form by the dispersion function $\eta(z)$:
+\begin{equation}
+\Det\left[(z - H)(z - H_0)^{-1}\right] = \frac{\eta(z)}{z - \omega_1} = 1 - \frac{\lambda^2}{z - \omega_1}\int_0^\infty \frac{\lvert V(\omega)\rvert^2}{z - \omega}\,d\omega, \qquad z \in \mathbb{C} \setminus [0,\infty).
+\end{equation}
+
+\subsection{The Quantum Scattering (S-Matrix) Zeta Function}
+
+Along the positive real axis $E \in (0,\infty)$, the boundary values of $\eta(z)$ from the upper and lower half-planes are $\eta(E \pm i0) = \eta_\pm(E)$. By Lippmann--Schwinger scattering theory, the exact single-channel on-shell scattering matrix $S(E)$ is the ratio of these two analytically continued branches:
+\begin{equation}
+S(E) = \frac{\eta(E - i0)}{\eta(E + i0)} = \frac{\eta_-(E)}{\eta_+(E)} = e^{2i\delta(E)}, \qquad \delta(E) = -\Arg \eta(E + i0),
+\end{equation}
+where $\delta(E)$ is the elastic scattering phase shift. Extending this ratio analytically across the branch cut defines the \textbf{Friedrichs scattering (dynamical) zeta function}:
+\begin{equation}\label{eq:friedrichs_zeta}
+\zeta_{\mathrm{Fr}}(z) \equiv \frac{\eta_-(z)}{\eta_+(z)},
+\end{equation}
+where $\eta_+(z)$ is the analytic continuation of $\eta(z)$ from $\Imag z > 0$ into the lower half-plane, and $\eta_-(z)$ is the analytic continuation of $\eta(z)$ from $\Imag z < 0$ into the upper half-plane.
+
+In the weak-coupling regime without bound states, $\zeta_{\mathrm{Fr}}(z)$ exhibits an exact \textbf{pole--zero duality} symmetric across the real energy axis:
+\begin{itemize}
+    \item \textbf{Poles of $\zeta_{\mathrm{Fr}}(z)$:} Located in the lower half-plane at $z_0 = \tilde{\omega}_1 - i\frac{\gamma}{2}$ (zeros of $\eta_+(z)$), governing forward-time exponential decay ($t > 0$).
+    \item \textbf{Zeros of $\zeta_{\mathrm{Fr}}(z)$:} Located symmetrically in the upper half-plane at $z_0^* = \tilde{\omega}_1 + i\frac{\gamma}{2}$ (zeros of $\eta_-(z)$), governing backward-time exponential decay ($t < 0$).
+    \item \textbf{Functional Reflection Equation:} By Schwarz reflection $\eta_-(z) = [\eta_+(z^*)]^*$, the scattering zeta function obeys:
+    \begin{equation}
+    \zeta_{\mathrm{Fr}}(z)\,\zeta_{\mathrm{Fr}}^*(z^*) = 1 \qquad \Longleftrightarrow \qquad \lvert \zeta_{\mathrm{Fr}}(E)\rvert = 1 \quad \text{for } E \in (0,\infty).
+    \end{equation}
+\end{itemize}
+At the Liouville superoperator level $L = H \otimes I - I \otimes H^T$, the leading non-zero decay resonance $\zeta_1 = z_0 - z_0^* = -i\gamma$ corresponds to the squared modulus of the S-matrix pole, yielding the spectral relaxation rate $\kappa = -\Imag \zeta_1 = \gamma = 2\pi\lambda^2\lvert V(\tilde{\omega}_1)\rvert^2 + \mathcal{O}(\lambda^4)$.
+
+\section{Structural Parallel: Ruelle Zeta $\zeta_D(z)$ vs.\ Riemann Zeta $\zeta(s)$}
+
+For hyperbolic classical and semiclassical flows, the flat trace of the Ruelle transfer operator $\widehat{\mathcal{L}}_\tau$ is expressed via the Atiyah--Bott--Guillemin trace formula as a sum over primitive periodic orbits $\gamma$ of period $T_\gamma$ and linearized monodromy matrix $M_\gamma$:
+\begin{equation}
+\Tr_{\mathrm{flat}}\left(e^{-z\tau}\widehat{\mathcal{L}}_\tau\right) \longleftrightarrow \sum_{\gamma} \sum_{k=1}^{\infty} \frac{T_\gamma\, e^{-k z T_\gamma}}{\lvert \Det(I - M_\gamma^k)\rvert}.
+\end{equation}
+Integrating over $z$ relates the Fredholm determinant to the \textbf{Ruelle dynamical zeta function} $\zeta_D(z)$ \cite{Ruelle1976}:
+\begin{equation}
+\zeta_D(z) = \prod_{\gamma}\left(1 - e^{-z T_\gamma}\right)^{-1} = \exp\left(\sum_{\gamma}\sum_{k=1}^{\infty} \frac{1}{k} e^{-k z T_\gamma}\right).
+\end{equation}
+Comparing $\zeta_D(z)$ with the Euler product of the \textbf{Riemann zeta function} $\zeta(s)$ ($\Real s > 1$),
+\begin{equation}
+\zeta(s) = \prod_{p}\left(1 - p^{-s}\right)^{-1} = \prod_{p}\left(1 - e^{-s \ln p}\right)^{-1},
+\end{equation}
+establishes a three-way structural correspondence summarized in Table~\ref{tab:zeta_comparison}.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison of Ruelle's dynamical zeta function $\zeta_D(z)$, the Riemann zeta function $\zeta(s)$, and the Friedrichs scattering zeta function $\zeta_{\mathrm{Fr}}(z)$.}
+\label{tab:zeta_comparison}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{} >{\bfseries}p{2.9cm} p{3.9cm} p{3.9cm} p{3.9cm} @{}}
+\toprule
+Mathematical Feature & Ruelle Dynamical Zeta $\zeta_D(z)$ & Riemann Zeta $\zeta(s)$ & Friedrichs Scattering Zeta $\zeta_{\mathrm{Fr}}(z)$ \\
+\midrule
+Primitive Atoms & Primitive periodic orbits $\gamma$ & Prime numbers $p \in \{2,3,5,\dots\}$ & Continuous bath modes $\omega \in [0,\infty)$ and bare state $\lvert 1\rangle$ \\
+Action / Period & Orbit period $T_\gamma$ & Logarithmic prime period $T_p = \ln p$ & Energy--time phase $E \cdot t$ \\
+Instability / Width & Lyapunov exponent $\lambda_\gamma = \frac{1}{T_\gamma}\ln\lvert \Lambda_\gamma\rvert$ & Uniform hyperbolic scaling $\lambda_p = 1$ ($e^{T_p} = p$) & Fermi Golden Rule decay width $\gamma = 2\pi\lambda^2\lvert V(\tilde{\omega}_1)\rvert^2$ \\
+Spectral Variable & Complex frequency $z = \sigma + i\omega$ & Critical strip variable $s = \sigma + it$ & Complex energy $z = E + i\Gamma$ \\
+Zeros / Poles & Poles at Ruelle--Pollicott resonances $z_n$ & Non-trivial zeros at $s_n = \frac{1}{2} + iE_n$ & Pole at $z_0 = \tilde{\omega}_1 - i\frac{\gamma}{2}$; zero at $z_0^* = \tilde{\omega}_1 + i\frac{\gamma}{2}$ \\
+Functional Symmetry & Time-reversal duality $z \leftrightarrow -z$ & $\xi(s) = \xi(1-s)$ across $\Real s = \frac{1}{2}$ & $\zeta_{\mathrm{Fr}}(z)\zeta_{\mathrm{Fr}}^*(z^*) = 1$ across $\Imag z = 0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Prigogine's Star-Unitary Operator and the Hilbert--P\'olya Program}
+
+\subsection{The Berry--Keating $xp$ Hamiltonian and Continuous-Spectrum Obstruction}
+
+Berry and Keating \cite{BerryKeating1999} conjectured that the imaginary parts $\{E_n\}$ of the non-trivial Riemann zeros $s_n = \frac{1}{2} + iE_n$ correspond to the eigenvalues of a quantized dilation generator $H_{\mathrm{BK}} = \frac{1}{2}(xp + px)$ on $L^2(\mathbb{R}^+)$. However, on standard $L^2(\mathbb{R}^+)$, $H_{\mathrm{BK}}$ exhibits the exact same spectral obstruction as the unperturbed Friedrichs Liouvillian $L$:
+\begin{equation}
+\sigma(H_{\mathrm{BK}}) = \sigma_{\mathrm{ac}}(H_{\mathrm{BK}}) = (-\infty, \infty), \qquad \sigma_p(H_{\mathrm{BK}}) = \emptyset.
+\end{equation}
+In both settings, discrete spectral data—Ruelle--Pollicott resonances $\{z_0, z_0^*\}$ in the Friedrichs model and non-trivial zeros $\{s_n\}$ in the Berry--Keating/Connes program—emerge only when one abandons unitary Hilbert-space equivalence in favor of either:
+\begin{enumerate}
+    \item \textbf{Rigged Hilbert spaces and spectral deformation} (analytic continuation into Hardy-class Banach/Fr\'echet spaces), or
+    \item \textbf{Non-unitary similarity / star-unitary transformations} $\Phi = \Lambda^{-1}L\Lambda$, which break $t \to -t$ symmetry and map the continuous spectrum into a rigged domain where complex poles become normalizable Gamow--Siegert eigenstates.
+\end{enumerate}
+
+\subsection{The Riemann--von Mangoldt Explicit Formula as a Spectral Trace}
+
+Just as the Friedrichs survival amplitude $a(t) = \langle 1 \rvert e^{-iHt} \lvert 1\rangle$ splits into a resonance residue $A_1 e^{-iz_0 t}$ plus a continuous branch-cut integral, the \textbf{Riemann--von Mangoldt explicit formula} decomposes the Chebyshev prime-counting function $\psi(x) = \sum_{p^k \le x} \ln p$ into a leading stationary pole ($s = 1$) and a sum over non-trivial zeros $\rho_n = \beta_n + iE_n$:
+\begin{equation}
+\psi(x) = \underbrace{x}_{\substack{\text{Stationary Mode} \\ (s = 1 \text{ pole})}} - \underbrace{\sum_{\rho_n} \frac{x^{\rho_n}}{\rho_n}}_{\substack{\text{Resonance Modes} \\ (s = \rho_n \text{ zeros})}} - \ln(2\pi) - \frac{1}{2}\ln\left(1 - x^{-2}\right).
+\end{equation}
+Under the logarithmic time substitution $x = e^t$ ($t = \ln x$), the normalized fluctuation around the leading stationary state takes the form:
+\begin{equation}
+\frac{\psi(e^t) - e^t}{e^t} = -\sum_{\rho_n} \frac{e^{-(1-\beta_n)t + iE_n t}}{\beta_n + iE_n} + \mathcal{O}(e^{-t}).
+\end{equation}
+Thus, the \textbf{Riemann Hypothesis} ($\beta_n = \frac{1}{2}$ for all non-trivial zeros) is the exact arithmetic analog of \textbf{uniform spectral relaxation}, dictating that all subleading oscillatory modes decay at the universal exponential rate $\kappa = 1 - \beta_n = \frac{1}{2}$ relative to the stationary state $e^t$.
+
+\section{Synthesis and Scope of the Analogy}
+
+\begin{enumerate}
+    \item \textbf{Necessity of Non-Unitary / Rigged Extensions:} Neither the Friedrichs Liouvillian $L$ nor the dilation generator $xp$ possesses discrete complex eigenvalues on $L^2$. Both require non-unitary similarity or analytic continuation into rigged spaces to expose discrete poles/zeros.
+    \item \textbf{Pole--Zero Reflection Duality:} The Friedrichs scattering zeta function $\zeta_{\mathrm{Fr}}(z) = \eta_-(z)/\eta_+(z)$ pairs the lower-half-plane resonance pole $z_0$ with the upper-half-plane zero $z_0^*$, mirroring the functional equation $\xi(s) = \xi(1-s)$ across the critical line $\Real s = \frac{1}{2}$.
+    \item \textbf{Dissipation vs.\ Critical-Line Unitarity:} In the Friedrichs model, Prigogine's star-unitary generator $\Phi$ possesses a strictly positive dissipative part $(i\Phi)^e \ge 0$, driving irreversible exponential decay ($\Imag z_0 = -\gamma/2 < 0$) and a monotonic Lyapunov functional $\Omega(t) = \Tr(\tilde{\rho}^\dagger \tilde{\rho})$. By contrast, on the critical line $\Real s = \frac{1}{2}$, the shifted Riemann frequencies $\{E_n\}$ are purely real, corresponding to a conservative/unitary flow whose apparent decay rate $\kappa = \frac{1}{2}$ arises solely from the exponential coordinate rescaling $x = e^t$.
+\end{enumerate}
+
+\appendix
+
+\section{Mayer's Gauss--Kuzmin--Wirsing Transfer Operator and Comparison with the Friedrichs Dispersion Determinant}\label{app:mayer}
+
+In 1990--1991, Dieter Mayer \cite{Mayer1990,Mayer1991} established an exact operator-theoretic representation of the Riemann zeta function $\zeta(s)$ via the Fredholm determinant of a nuclear Ruelle transfer operator associated with the continued-fraction (Gauss) map. Below, we derive this construction and contrast its spectral structure directly with the Friedrichs dispersion function $\eta(z)$.
+
+\subsection{Derivation of the GKW Transfer Operator $\mathcal{L}_s$}
+
+Consider the Gauss map $T : (0,1] \to [0,1)$ defined by
+\begin{equation}
+T(x) = \left\{\frac{1}{x}\right\} = \frac{1}{x} - n \qquad \text{for } x \in \left(\frac{1}{n+1}, \frac{1}{n}\right], \quad n \in \mathbb{N} = \{1, 2, 3, \dots\}.
+\end{equation}
+The local inverse branches of $T$ are $v_n(x) = \frac{1}{x + n}$ ($n \ge 1$), with Jacobian $\lvert v_n'(x)\rvert = (x + n)^{-2}$. For a complex parameter $s \in \mathbb{C}$, the weighted Ruelle--Perron--Frobenius transfer operator (the \textbf{Gauss--Kuzmin--Wirsing operator}) with geometric potential $\phi_s(y) = s \ln \lvert T'(y)\rvert = -2s \ln y$ acts on functions $f$ via:
+\begin{equation}\label{eq:gkw_def}
+(\mathcal{L}_s f)(x) = \sum_{T(y)=x} e^{-\phi_s(y)} f(y) = \sum_{n=1}^{\infty} \lvert v_n'(x)\rvert^s f\big(v_n(x)\big) = \sum_{n=1}^{\infty} \frac{1}{(x+n)^{2s}} f\left(\frac{1}{x+n}\right).
+\end{equation}
+To obtain a trace-class (nuclear) operator with a well-defined Fredholm determinant, Mayer restricts $\mathcal{L}_s$ to the Banach space $A_\infty(D)$ of functions holomorphic on the open disk $D = \{z \in \mathbb{C} : \lvert z - 1\rvert < \frac{3}{2}\}$ and continuous on $\overline{D}$, equipped with the supremum norm $\Vert f\Vert = \sup_{z \in D} \lvert f(z)\rvert$.
+
+\begin{theorem}[Mayer's Nuclearity and Meromorphic Continuation \cite{Mayer1990}]
+For $\Real s > \frac{1}{2}$, the series \eqref{eq:gkw_def} converges uniformly on $\overline{D}$ and defines a Grothendieck nuclear operator of order $0$ on $A_\infty(D)$. Furthermore, using the Mellin transform identity $(z+n)^{-2s} = \frac{1}{\Gamma(2s)}\int_0^\infty t^{2s-1} e^{-(z+n)t}\,dt$, $\mathcal{L}_s$ admits the integral representation
+\begin{equation}
+(\mathcal{L}_s f)(z) = \frac{1}{\Gamma(2s)} \int_0^\infty \frac{t^{2s-1} e^{-zt}}{1 - e^{-t}} \mathcal{B}[f](t)\,dt,
+\end{equation}
+where $\mathcal{B}[f](t) = \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!} \frac{(-t)^k}{k!}$ is the Borel-type transform of $f$. Because the pole at $t = 0$ is canceled by $\Gamma(2s)^{-1}$, the map $s \mapsto \mathcal{L}_s$ extends meromorphically to the entire complex plane $\mathbb{C}$ with simple poles only at $s = \frac{1-k}{2}$ ($k \in \mathbb{N}_0$).
+\end{theorem}
+
+\subsection{Trace Formula and Fredholm Determinant $\Det(I - \mathcal{L}_s^2)$}
+
+Because $\mathcal{L}_s$ is nuclear of order $0$ on $A_\infty(D)$, its traces $\Tr(\mathcal{L}_s^m)$ are given by summing over the fixed points of $T^m$. For $m=1$, each branch $v_n$ has a unique fixed point $x_n^* = \frac{-n + \sqrt{n^2 + 4}}{2} \in D$, satisfying $v_n'(x_n^*) = -(x_n^*)^2$. Applying the holomorphic Lefschetz fixed-point formula yields:
+\begin{equation}
+\Tr(\mathcal{L}_s) = \sum_{n=1}^{\infty} \frac{\lvert v_n'(x_n^*)\rvert^s}{1 - v_n'(x_n^*)} = \sum_{n=1}^{\infty} \frac{(x_n^*)^{2s}}{1 + (x_n^*)^2}.
+\end{equation}
+More generally, periodic orbits of $T$ of period $m$ correspond to reduced quadratic irrationals with purely periodic continued fractions $\gamma = [\overline{n_1, n_2, \dots, n_m}]$. Summing over all periodic orbits of even and odd lengths establishes an exact identity between the Fredholm determinants $\Det(I \mp \mathcal{L}_s)$ and the Selberg/Ruelle zeta function $Z_{\mathrm{Sel}}(s)$ of the modular surface $\mathrm{PSL}(2,\mathbb{Z}) \backslash \mathbb{H}$ \cite{Mayer1991,LewisZagier2001}:
+\begin{equation}
+Z_{\mathrm{Sel}}(s) = \prod_{k=0}^{\infty} \zeta_D(s + k) = \Det\left(I - \mathcal{L}_s^2\right) = \Det(I - \mathcal{L}_s)\Det(I + \mathcal{L}_s).
+\end{equation}
+By the Selberg trace formula for the modular surface, $Z_{\mathrm{Sel}}(s)$ factors into contributions from the continuous Eisenstein scattering spectrum (governed by $\zeta(2s)$) and the discrete Maass cusp forms:
+\begin{equation}\label{eq:mayer_det}
+\Det\left(I - \mathcal{L}_s^2\right) = \frac{\xi(2s - 1)}{\xi(2s)} \cdot Z_{\mathrm{cusp}}(s) \cdot G_{\infty}(s),
+\end{equation}
+where $\xi(s) = \frac{1}{2}s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$ is the completed Riemann zeta function, $Z_{\mathrm{cusp}}(s)$ encodes the Maass cusp eigenvalues, and $G_{\infty}(s)$ is an explicit non-vanishing factor built from Barnes double-gamma functions.
+
+\begin{proposition}[Eigenvalue-One Criterion for Non-Trivial Riemann Zeros]
+From \eqref{eq:mayer_det}, every non-trivial zero $\rho_n = \frac{1}{2} + iE_n$ of $\zeta(2s)$ (i.e., $2s = \rho_n \iff s = \frac{1}{4} + i\frac{E_n}{2}$) produces a zero of the Fredholm determinant $\Det(I - \mathcal{L}_s^2) = 0$. Consequently, $s$ corresponds to a non-trivial zero of $\zeta(2s)$ if and only if $+1$ or $-1$ belongs to the discrete spectrum of Mayer's transfer operator $\mathcal{L}_s$:
+\begin{equation}
+\zeta(2s) = 0 \quad (0 < \Real(2s) < 1) \qquad \Longrightarrow \qquad 1 \in \sigma(\mathcal{L}_s) \;\;\text{or}\;\; -1 \in \sigma(\mathcal{L}_s).
+\end{equation}
+\end{proposition}
+
+\subsection{Direct Structural Comparison: Mayer's $\Det(I - \mathcal{L}_s^2)$ vs.\ Friedrichs' $\eta(z)$}
+
+Comparing Mayer's Fredholm determinant $\Det(I - \mathcal{L}_s^2)$ with the Friedrichs dispersion determinant $\eta(z)/(z - \omega_1) = \Det[(z - H)(z - H_0)^{-1}]$ illuminates both the deep unity of non-Hermitian spectral theory and the precise mathematical boundary between chaotic arithmetic systems and open quantum relaxation:
+
+\begin{table}[htbp]
+\centering
+\caption{Direct mathematical comparison between Mayer's GKW Fredholm determinant and the Friedrichs dispersion determinant.}
+\label{tab:mayer_vs_friedrichs}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{} >{\bfseries}p{3.0cm} p{5.6cm} p{5.6cm} @{}}
+\toprule
+Structural Aspect & Mayer's GKW Determinant $\Det(I - \mathcal{L}_s^2)$ & Friedrichs Dispersion Determinant $\eta(z)/(z - \omega_1)$ \\
+\midrule
+Underlying Dynamics & Discrete-time hyperbolic Gauss map $Tx = \{1/x\}$ on $(0,1]$ (infinite branches) & Continuous-time unitary Hamiltonian $H = H_0 + \lambda V$ on $\mathcal{H}_1 \oplus L^2(\mathbb{R}^+)$ \\
+Functional Space & Banach space $A_\infty(D)$ of functions holomorphic on disk $D$ (nuclear of order $0$) & Hardy-class rigged Liouville space $\mathcal{B}_-$ / star-unitary domain $\mathcal{D}(\Lambda^{-1})$ \\
+Spectral Parameterization & \textbf{Parametric eigenvalue problem:} $s$ enters the potential $(x+n)^{-2s}$; zeros occur when $1 \in \sigma(\mathcal{L}_s^2)$ & \textbf{Resolvent eigenvalue problem:} $z$ enters $(z - H)^{-1}$; resonances occur at zeros of $\eta_+(z) = 0$ \\
+Analytic Continuation Mechanism & Mellin transform + Borel transform $\mathcal{B}[f]$ cancels pole at $t=0$ across $\mathbb{C}$ & Cauchy-integral contour deformation across branch cut $[0,\infty)$ onto unphysical sheet \\
+Scattering Ratio Structure & Eisenstein scattering matrix $\varphi(s) = \frac{\xi(2s-1)}{\xi(2s)}$ appears directly inside $\Det(I - \mathcal{L}_s^2)$ & On-shell S-matrix $S(E) = \frac{\eta_-(E)}{\eta_+(E)} = \zeta_{\mathrm{Fr}}(E)$ is the ratio of continued determinants \\
+Zero / Pole Geometry & Infinitely many critical zeros at $s_n = \frac{1}{4} + i\frac{E_n}{2}$ plus Maass cusp zeros & Single complex-conjugate resonance pair $z_0 = \tilde{\omega}_1 - i\frac{\gamma}{2}$ and $z_0^* = \tilde{\omega}_1 + i\frac{\gamma}{2}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[The Eisenstein Scattering Ratio as the Exact Bridge]
+Notice from \eqref{eq:mayer_det} that the Riemann zeta contribution to Mayer's Fredholm determinant enters specifically through the \textbf{modular Eisenstein scattering matrix} $\varphi(s) = \xi(2s-1)/\xi(2s)$, which satisfies the unitarity reflection law $\varphi(s)\varphi(1-s) = 1$ on the critical line $\Real s = \frac{1}{2}$. In the Friedrichs model, the exact counterpart of $\varphi(s)$ is the scattering zeta function $\zeta_{\mathrm{Fr}}(z) = \eta_-(z)/\eta_+(z)$ in \eqref{eq:friedrichs_zeta}, which satisfies $\zeta_{\mathrm{Fr}}(z)\zeta_{\mathrm{Fr}}^*(z^*) = 1$ on the real energy axis $\Imag z = 0$. Thus, while the Friedrichs model represents a \emph{single-resonance} scattering system with one unstable discrete mode $\lvert 1\rangle$, Mayer's GKW transfer operator realizes an \emph{infinite-dimensional arithmetic scattering system} whose resonance poles and zeros encode the entire non-trivial spectrum of $\zeta(s)$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{Prigogine1977}
+I.~Prigogine, F.~Mayn\'e, C.~George, and M.~De~Haan, ``Microscopic theory of irreversible processes,'' \emph{Proc. Natl. Acad. Sci. USA}, vol.~74, no.~10, pp.~4152--4156, 1977.
+
+\bibitem{Ruelle1976}
+D.~Ruelle, ``Zeta-functions for expanding maps and Anosov flows,'' \emph{Invent. Math.}, vol.~34, pp.~231--242, 1976.
+
+\bibitem{BerryKeating1999}
+M.~V.~Berry and J.~P.~Keating, ``$H = xp$ and the Riemann zeros,'' in \emph{Supersymmetry and Trace Formulae: Chaos and Disorder}, I.~V.~Lerner, J.~P.~Keating, and D.~E.~Khmelnitskii, Eds., Kluwer Academic/Plenum, pp.~355--367, 1999.
+
+\bibitem{Mayer1990}
+D.~H.~Mayer, ``On the thermodynamic formalism for the Gauss map,'' \emph{Commun. Math. Phys.}, vol.~130, pp.~311--333, 1990.
+
+\bibitem{Mayer1991}
+D.~H.~Mayer, ``The thermodynamic formalism approach to Selberg's zeta function for $\mathrm{PSL}(2,\mathbb{Z})$,'' \emph{Bull. Amer. Math. Soc.}, vol.~25, no.~1, pp.~55--60, 1991.
+
+\bibitem{LewisZagier2001}
+J.~Lewis and D.~Zagier, ``Period functions for Maass wave forms. I,'' \emph{Ann. of Math.}, vol.~153, no.~1, pp.~191--258, 2001.
+
+\end{thebibliography}
+
+\end{document}
