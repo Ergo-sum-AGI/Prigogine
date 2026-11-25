@@ -1,144 +1,495 @@
-# Corrigendum and Mathematical Completion Note: Rigged-Space Friedrichs Semigroups and Mayer's Fredholm Determinant
+# Corrigendum — Spectral Deformation, Semigroup Claims, and the Mayer–Selberg–Riemann Connection
 
-**Reference Documents:**
-* **Research Note I:** *Spectral Relaxation and Microscopic Irreversibility: A Transfer-Operator Investigation of the Friedrichs Model*
-* **Research Note II:** *Spectral Determinants, Dynamical Zeta Functions, and the Riemann Zeta Analog in Non-Hermitian and Star-Unitary Dynamics*
-
----
-
-## Executive Summary
-
-This corrigendum resolves two substantive mathematical gaps identified during the audit of Research Notes I and II:
-
-1. **Pole–Zero Cancellation in Mayer's Fredholm Determinant (Research Note II):** Clarifies why zeros of $\xi(2s)$ in the denominator of the Eisenstein scattering matrix $\varphi(s) = \xi(2s-1)/\xi(2s)$ do **not** produce poles of $\det(I - \mathcal{L}_s^2) = Z_{\mathrm{Selberg}}(s)$, establishes the exact Hadamard/Efrat factorization proving that non-trivial Riemann zeros $\rho_n$ correspond rigorously to eigenvalues $\pm 1$ of $\mathcal{L}_s$ at $s = \rho_n/2$, and notes the resulting half-scaling obstruction ($\operatorname{Re} s = 1/4$ vs. $\operatorname{Re} s = 1/2$) for the Riemann Hypothesis.
-2. **Rigorous Construction of the Friedrichs Transfer Semigroup (Research Note I):** Replaces the heuristic contour-deformation assertion with a complete operator-theoretic construction specifying the nuclear Gelfand triplet, forward-time ($t \ge 0$) Hardy-space invariance, Aguilar–Balslev–Combes complex spectral deformation, Hille–Yosida/Lumer–Phillips contractivity, exact intertwining with the unitary Liouville group $e^{-iLt}$, and corrected spectral terminology regarding isolated resonances.
+**Status:** Corrective revision; several claims from the earlier corrigendum are withdrawn pending proof  
+**Supersedes:** The corresponding claims in `corrigendum_friedrichs_zeta.md`  
+**Purpose:** Correct the complex-dilation convention, separate spectral location from semigroup dissipativity, and repair the logical status of the proposed Riemann-zero encoding.
 
 ---
 
-## Part I: Resolution of Audit Finding 1 — Poles vs. Zeros in Mayer's Fredholm Determinant
+## 0. Summary of corrections
 
-### 1. Identification of the Error in Research Note II
-In Appendix A of Research Note II, Mayer's nuclear transfer operator $\mathcal{L}_s$ for the Gauss map $Tx = \{1/x\}$ on $A_\infty(D)$ was related to the Selberg zeta function for $\Gamma = \mathrm{PSL}(2,\mathbb{Z})$ via the exact operator identity:
+The earlier corrigendum contained three substantive problems.
 
-$$\det(I - \mathcal{L}_s^2) = Z_{\mathrm{Selberg}}(s)$$
+1. **Complex dilation:** It used a real dilation formula while describing a rotation of the continuous spectrum into the complex plane. A real dilation does not rotate the spectrum. The complex-scaled family must be defined by analytic continuation of the dilation group.
 
-However, Research Note II subsequently invoked the scattering-matrix decomposition
+2. **Semigroup generation:** It inferred maximal dissipativity and contractivity from the fact that the deformed spectrum lies in the closed lower half-plane. Spectral location alone does not imply dissipativity for a non-normal operator, nor does it establish the range condition required by the Lumer–Phillips theorem.
 
-$$Z_{\mathrm{Selberg}}(s) = \frac{\xi(2s-1)}{\xi(2s)} \, Z_{\mathrm{cusp}}(s) \, G_\infty(s)$$
+3. **Selberg and Riemann zeros:** It claimed that the functional equation of the Selberg zeta function forces zeros at \(s=\rho/2\), where \(\rho\) is a non-trivial Riemann zero. The displayed argument does not establish this. A pole of \(Z(s)/Z(1-s)\) can result from a zero of \(Z(1-s)\); it does not, without further information, imply a zero of \(Z(s)\).
 
-and erroneously inferred that zeros of $\zeta(2s)$ directly produce zeros of $\det(I - \mathcal{L}_s^2)$. As written, zeros of $\xi(2s)$ appear in the **denominator** of $\varphi(s) = \xi(2s-1)/\xi(2s)$, which would superficially suggest poles rather than zeros unless the compensating cancellations in the Selberg trace formula are explicitly exhibited.
-
-### 2. Exact Cancellation Mechanism and Entire Factorization
-By Selberg (1956), Venkov–Zograf, and Efrat (*J. Funct. Anal.*, 1993), $Z_{\mathrm{Selberg}}(s)$ for $\Gamma = \mathrm{PSL}(2,\mathbb{Z})$ is an **entire function of order $2$** with no poles anywhere in $\mathbb{C}$.
-
-The resolution of the apparent denominator pole lies in the Selberg trace formula for finite-volume non-compact hyperbolic surfaces $\Gamma \backslash \mathbb{H}$:
-
-* On the spectral side of the trace formula, the continuous Eisenstein spectrum contributes via the logarithmic derivative $-\frac{1}{2\pi} \int_{-\infty}^{\infty} h(r) \frac{\varphi'}{\varphi}(\tfrac{1}{2} + ir)\,dr$, entering with a **minus sign** relative to the discrete Maass cusp eigenvalues.
-* Integrating the trace formula to construct $\frac{Z'_{\mathrm{Selberg}}}{Z_{\mathrm{Selberg}}}(s)$ converts the poles of $\frac{\varphi'}{\varphi}(s)$ at $2s = \rho_n$ (where $\xi(\rho_n) = 0$) into **simple zeros** (with positive multiplicity) of $Z_{\mathrm{Selberg}}(s)$ at $s = \rho_n/2$.
-* Equivalently, via the functional equation of $Z_{\mathrm{Selberg}}(s)$:
-
-$$\frac{Z_{\mathrm{Selberg}}(s)}{Z_{\mathrm{Selberg}}(1-s)} = \varphi(s) \, \Psi_\infty(s) = \frac{\xi(2s-1)}{\xi(2s)} \, \Psi_\infty(s)$$
-
-where $\Psi_\infty(s)$ is an explicit product of Barnes double-gamma functions $G(s)$ and Euler $\Gamma(s)$ factors, the entirety of $Z_{\mathrm{Selberg}}(s)$ forces every zero of $\xi(2s)$ in the denominator to be canceled by a corresponding zero of $Z_{\mathrm{Selberg}}(1-s)$, which by the functional symmetry $\xi(2s) = \xi(1-2s)$ places a zero of $Z_{\mathrm{Selberg}}(s)$ at $s = \rho_n/2$.
-
-Consequently, the complete Hadamard product factorization of $Z_{\mathrm{Selberg}}(s)$ is given by:
-
-$$Z_{\mathrm{Selberg}}(s) = c \, e^{Q(s)} \, s(s-1) \underbrace{\prod_{r_j > 0} \left[\left(s - \tfrac{1}{2}\right)^2 + r_j^2\right]}_{\text{Maass cusp eigenvalues}} \underbrace{\prod_{\rho_n} \left(s - \tfrac{\rho_n}{2}\right)}_{\text{Eisenstein scattering resonances } (\xi(2s)=0)} \widetilde{G}_\infty(s)$$
-
-where $Q(s)$ is a quadratic polynomial and $\widetilde{G}_\infty(s)$ encodes the trivial topological zeros at $s = -k$ ($k \in \mathbb{N}_0$) dictated by the orbifold Euler characteristic $\chi(\mathrm{PSL}(2,\mathbb{Z}) \backslash \mathbb{H}) = -\frac{1}{6}$.
-
-### 3. Corrected Eigenvalue-$\pm 1$ Criterion and Implications for RH
-Because $\det(I - \mathcal{L}_s^2) = \det(I - \mathcal{L}_s)\det(I + \mathcal{L}_s) = Z_{\mathrm{Selberg}}(s)$ is entire and $\mathcal{L}_s$ is nuclear on $A_\infty(D)$:
-
-1. **Exact Spectral Equivalence:** A point $s \in \mathbb{C}$ satisfies $+1 \in \sigma(\mathcal{L}_s)$ or $-1 \in \sigma(\mathcal{L}_s)$ **if and only if** $Z_{\mathrm{Selberg}}(s) = 0$.
-2. **Location of Riemann Zeros in $\sigma(\mathcal{L}_s)$:** Every non-trivial zero $\rho_n$ of $\zeta(s)$ corresponds rigorously to an eigenvalue $\pm 1$ of Mayer's transfer operator at the half-scaled parameter:
-
-$$s_n = \frac{\rho_n}{2} \qquad \Longleftrightarrow \qquad 1 \in \sigma\!\left(\mathcal{L}_{\rho_n/2}^2\right)$$
-
-3. **Critical-Line Obstruction for RH:** While this establishes a genuine operator-theoretic encoding of all non-trivial Riemann zeros inside the family $\{\mathcal{L}_s\}_{s \in \mathbb{C}}$, it does not directly prove the Riemann Hypothesis ($\operatorname{Re} \rho_n = \frac{1}{2}$) because the spectrum of $Z_{\mathrm{Selberg}}(s)$ superposes two distinct vertical lines:
-   * **Discrete Maass cusp zeros:** $\operatorname{Re}(s) = \frac{1}{2}$ (unconditionally proven via self-adjointness of the hyperbolic Laplacian on $L^2_{\mathrm{cusp}}$).
-   * **Continuous Eisenstein scattering zeros:** $\operatorname{Re}(s) = \frac{1}{4}$ (equivalent to RH, $\operatorname{Re} \rho_n = \frac{1}{2}$).
-
-   Any spectral proof of RH via Mayer's operator must therefore isolate the even/odd parity subspace or period-function boundary conditions separating the Eisenstein scattering resonances at $\operatorname{Re} s = \frac{1}{4}$ from the cusp spectrum at $\operatorname{Re} s = \frac{1}{2}$.
+The corrected conclusions are deliberately narrower.
 
 ---
 
-## Part II: Resolution of Audit Finding 2 — Rigorous Construction of the Friedrichs Transfer Semigroup
+# Part I. Mayer's determinant and the proposed Riemann-zero encoding
 
-### 1. Identification of the Gap in Research Note I
-In Section 4.B of Research Note I, the analytically continued Friedrichs transfer operator $\widehat{\mathcal{L}}_\tau$ was introduced via contour deformation on a Hardy-type space without proving domain invariance, topology, contractivity, or semigroup composition. Below is the complete, self-contained proof following Aguilar–Balslev–Combes spectral deformation and Antoniou–Prigogine rigged Liouville space theory.
+## 1. The determinant identity
 
-### 2. Explicit Gelfand Triplets (Rigged Hilbert and Liouville Spaces)
-Consider the single-excitation Friedrichs Hamiltonian $H = H_0 + \lambda V$ on $\mathcal{H} = \mathbb{C} \oplus L^2(\mathbb{R}^+, d\omega)$ in the weak-coupling no-bound-state regime ($\sigma(H) = \sigma_{\mathrm{ac}}(H) = [0, \infty)$).
+For the modular group, the transfer-operator construction relates the Selberg zeta function to a Fredholm determinant of a Mayer-type operator. In the relevant normalization, the proposed identity is
+\[
+Z_{\mathrm{Sel}}(s)=\det(I-\mathcal L_s^2).
+\tag{1.1}
+\]
 
-**Analyticity Assumption on the Form Factor:** Assume the coupling function $V(\omega)$ is the boundary value on $\mathbb{R}^+$ of a function analytic in an open lower sector $S_{\theta_0} = \{z \in \mathbb{C} : -\theta_0 < \arg z < 0\}$ (with $0 < \theta_0 \le \pi/2$) and rapidly decaying at $0$ and $\infty$ (e.g., $V(\omega) = \omega^{1/2} e^{-\omega/\Lambda_c}$), such that $\eta_+(z)$ extends analytically into $S_{\theta_0}$ with a single simple resonance zero at $z_0 = \tilde{\omega}_1 - i\gamma/2 \in S_{\theta_0}$ ($0 < \arctan(\gamma / 2\tilde{\omega}_1) < \theta_0$).
+When \(\mathcal L_s\) is nuclear (or belongs to the appropriate trace-class determinant framework) on the stated function space, one has
+\[
+\det(I-\mathcal L_s^2)
+=
+\det(I-\mathcal L_s)\det(I+\mathcal L_s).
+\tag{1.2}
+\]
 
-#### A. State-Space Gelfand Triplet
-Define the Hardy–Schwartz test space:
+Consequently,
+\[
+Z_{\mathrm{Sel}}(s)=0
+\quad\Longleftrightarrow\quad
+1\in\sigma(\mathcal L_s)
+\ \text{or}
+-1\in\sigma(\mathcal L_s),
+\tag{1.3}
+\]
+provided the determinant is defined on the specified operator class and the usual compact-operator spectral correspondence applies.
 
-$$\Phi_- = \mathbb{C} \oplus \left( \mathcal{S}(\mathbb{R}^+) \cap \mathcal{H}^2_-(\mathbb{R}^+) \right)$$
+This is an operator-theoretic encoding of the zeros of the Selberg zeta function. It does not by itself identify those zeros with the zeros of the Riemann zeta function.
 
-where $\mathcal{S}(\mathbb{R}^+)$ is the Schwartz space of rapidly decreasing smooth functions on $[0, \infty)$ equipped with its standard Fréchet seminorms $\|f\|_{m,k} = \sup_{\omega > 0} \vert \omega^m f^{(k)}(\omega) \vert$, and $\mathcal{H}^2_-(\mathbb{R}^+)$ is the lower-half-plane Hardy space of functions analytic on $\mathbb{C}_- = \{\operatorname{Im} z < 0\}$ satisfying $\sup_{y < 0} \int_{-\infty}^{\infty} \vert f(x + iy) \vert^2 \, dx < \infty$.
+## 2. Scattering determinant and the logical gap
 
-* Because $\mathcal{S}(\mathbb{R}^+)$ is a nuclear Fréchet space and the Hardy boundary-value condition is closed in the $L^2$ and Fréchet topologies, $\Phi_-$ is a **dense nuclear Fréchet subspace** of $\mathcal{H}$.
-* Its topological antidual $\Phi_-^\times$ yields the Gelfand triplet:
+For the modular surface, the Eisenstein scattering coefficient has the form
+\[
+\varphi(s)
+=
+\sqrt{\pi}\,
+\frac{\Gamma(s-\frac12)}{\Gamma(s)}
+\frac{\zeta(2s-1)}{\zeta(2s)}.
+\tag{2.1}
+\]
 
-$$\Phi_- \subset \mathcal{H} \subset \Phi_-^\times$$
+Equivalently, with the completed zeta function
+\[
+\xi(s)=\frac12s(s-1)\pi^{-s/2}
+\Gamma\!\left(\frac{s}{2}\right)\zeta(s),
+\]
+the expression can be written
+\[
+\varphi(s)=
+\frac{s}{s-1}\frac{\xi(2s-1)}{\xi(2s)}.
+\tag{2.2}
+\]
 
-#### B. Rigged Liouville Space (RLS)
-Defining $\Phi_+ = \mathbb{C} \oplus (\mathcal{S}(\mathbb{R}^+) \cap \mathcal{H}^2_+(\mathbb{R}^+))$ analogously for the upper half-plane, construct the projective nuclear tensor product:
+A non-trivial zero \(\rho\) of \(\zeta\) gives a zero of \(\xi(2s)\) at
+\[
+s=\frac{\rho}{2}.
+\tag{2.3}
+\]
+Subject to the absence of a simultaneous numerator zero, this gives a pole of the scattering coefficient \(\varphi(s)\).
 
-$$\mathcal{B}_- = \Phi_- \widehat{\otimes}_\pi \Phi_+$$
+However, a pole of \(\varphi(s)\) does not automatically establish a zero of \(Z_{\mathrm{Sel}}(s)\).
 
-Because the projective tensor product of two nuclear Fréchet spaces is again nuclear and Fréchet, we obtain the **Rigged Liouville Space triplet**:
+The earlier argument invoked a functional relation of the schematic form
+\[
+\frac{Z_{\mathrm{Sel}}(s)}
+{Z_{\mathrm{Sel}}(1-s)}
+=
+\varphi(s)\Psi_\infty(s),
+\tag{2.4}
+\]
+where \(\Psi_\infty\) denotes the appropriate archimedean gamma-factor contribution.
 
-$$\mathcal{B}_- \subset \mathcal{B}_2(\mathcal{H}) \subset \mathcal{B}_-^\times$$
+Even if (2.4) is established with precisely specified normalizations, a pole on its right-hand side does not by itself imply a zero of its numerator. The ratio can have a pole because its denominator vanishes.
 
-Every element $\rho \in \mathcal{B}_-$ has matrix elements $\rho_{11} \in \mathbb{C}$, $\rho_{1\omega} \in \mathcal{S} \cap \mathcal{H}^2_-$, $\rho_{\omega 1} \in \mathcal{S} \cap \mathcal{H}^2_+$, and $\rho_{\omega\omega'} \in (\mathcal{S} \cap \mathcal{H}^2_-) \widehat{\otimes}_\pi (\mathcal{S} \cap \mathcal{H}^2_+)$.
+More explicitly, if
+\[
+Z_{\mathrm{Sel}}(1-s_0)=0,
+\]
+then the left-hand side may have a pole at \(s_0\), regardless of whether \(Z_{\mathrm{Sel}}(s_0)\) vanishes. A separate argument is required to determine the order of both factors and exclude cancellation or a denominator-generated pole.
 
-### 3. Forward-Time ($t \ge 0$) Invariance and Complex Spectral Deformation
-To prove that the evolution defines a strongly continuous contractive semigroup for $t \ge 0$:
+Therefore the implication
+\[
+\zeta(\rho)=0
+\quad\Longrightarrow\quad
+Z_{\mathrm{Sel}}(\rho/2)=0
+\tag{2.5}
+\]
+is **not established by the functional-equation argument as previously written**.
 
-#### Step 1: Invariance of $\Phi_-$ Under $U_t = e^{-iHt}$ for $t \ge 0$
-1. **Free Evolution:** For $\psi_{\mathrm{c}} \in \mathcal{S}(\mathbb{R}^+) \cap \mathcal{H}^2_-(\mathbb{R}^+)$ and $z = x - iy \in \mathbb{C}_-$ ($y > 0$), multiplication by $e^{-izt} = e^{-ixt} e^{-yt}$ satisfies $\vert e^{-izt} \vert = e^{-yt} \le 1$ for all $t \ge 0$. Hence $e^{-iH_0 t}$ maps $\Phi_-$ continuously into itself for all $t \ge 0$ (and fails to preserve $\Phi_-$ for any $t < 0$, breaking time-reversal symmetry into a forward semigroup).
-2. **Interacting Evolution via Møller Wave Operator:** Because $\sigma(H) = \sigma_{\mathrm{ac}}(H) = [0, \infty)$, the outgoing Møller wave operator $\Omega_+ : \mathcal{H} \to \mathcal{H}$ is unitary and intertwines $H$ and $H_0$: $e^{-iHt} = \Omega_+ e^{-iH_0 t} \Omega_+^\dagger$. In the $H_0$-spectral representation:
+The claimed equivalence between non-trivial Riemann zeros and eigenvalues \(\pm1\) of \(\mathcal L_{\rho/2}\) must consequently be withdrawn pending an independent proof.
 
-$$(\Omega_+ \psi)_1 = \int_0^\infty \frac{\lambda V^*(\omega)}{\eta_+(\omega)} \psi(\omega) \, d\omega, \qquad (\Omega_+ \psi)(\omega) = \psi(\omega) + \frac{\lambda V(\omega)}{\eta_+(\omega)} \int_0^\infty \frac{\lambda V^*(\omega')}{\omega - \omega' + i0} \psi(\omega') \, d\omega'$$
+## 3. What remains valid about the half-scaling
 
-Because $V(\omega)$ is analytic in $S_{\theta_0}$ and $\eta_+(\omega)$ is smooth and non-vanishing on $[0, \infty)$, $\Omega_+$ and $\Omega_+^\dagger$ map the dense analytic test space $\mathcal{A}_{\theta_0} \subset \Phi_-$ (vectors analytic in $S_{\theta_0}$) continuously into the meromorphic Hardy space $\Phi_-^{\mathrm{mer}}$ (functions analytic in $S_{\theta_0}$ with at most a simple pole at $z_0$).
+If an independent theorem establishes that
+\[
+Z_{\mathrm{Sel}}(\rho/2)=0
+\]
+for every non-trivial Riemann zero \(\rho\), then (1.3) would imply
+\[
+1\in\sigma(\mathcal L_{\rho/2})
+\quad\text{or}\quad
+-1\in\sigma(\mathcal L_{\rho/2}).
+\tag{3.1}
+\]
 
-#### Step 2: Complex Dilation and Hille–Yosida Contractivity
-Fix a dilation angle $\theta \in \left(\arctan\frac{\gamma}{2\tilde{\omega}_1}, \theta_0\right)$ and define the unitary dilation group $(U_\theta \psi)(\omega) = e^{-\theta/2}\psi(e^{-\theta}\omega)$ on $L^2(\mathbb{R}^+)$ (extended as the identity on $\mathcal{H}_1$).
+The half-scaling would then map the Riemann critical line
+\[
+\operatorname{Re}\rho=\frac12
+\]
+to
+\[
+\operatorname{Re}s=\frac14.
+\tag{3.2}
+\]
 
-1. **Analytic Continuation of the Generator:** On the dense analytic core $\mathcal{A}_{\theta_0} \subset \Phi_-$, the family $H_\theta = U_\theta H U_\theta^{-1}$ extends analytically to a **closed, densely defined sectorial operator** on $\mathcal{H}$:
+This geometric observation is correct as a conditional statement. It is not, by itself, a proof of the zero correspondence.
 
-$$H_\theta \begin{pmatrix} c \\ \psi(\omega) \end{pmatrix} = \begin{pmatrix} \omega_1 c + \lambda e^{-\theta/2} \int_0^\infty V^*(e^{-\theta}\omega)\psi(\omega)\,d\omega \\ e^{-\theta}\omega\psi(\omega) + \lambda e^{-\theta/2} V(e^{-\theta}\omega) c \end{pmatrix}$$
+The Maass cusp-form zeros associated with the self-adjoint hyperbolic Laplacian occupy a different spectral component. Their familiar Selberg critical-line property must not be conflated with the proposed Eisenstein-scattering/Riemann-zero correspondence.
 
-2. **Spectrum of $H_\theta$:** By the Aguilar–Balslev–Combes theorem:
-   * The essential spectrum rotates rigidly into the lower half-plane: $\sigma_{\mathrm{ess}}(H_\theta) = \Gamma_\theta \equiv e^{-i\theta}[0, \infty)$.
-   * Because $\theta > \arctan(\gamma / 2\tilde{\omega}_1)$, the resonance pole $z_0 = \tilde{\omega}_1 - i\gamma/2$ is uncovered as an **isolated simple discrete eigenvalue** of $H_\theta$ lying strictly above $\Gamma_\theta$ and below $\mathbb{R}^+$.
+## 4. Hadamard factorization: corrected statement
 
-3. **Semigroup Generation and Contractivity:** Every point $z \in \sigma(H_\theta) = \Gamma_\theta \cup \{z_0\}$ satisfies $\operatorname{Im} z \le 0$. Moreover, $iH_\theta$ is maximally dissipative (up to a bounded similarity equivalence on the one-dimensional Riesz projection $P_{z_0}$ of $z_0$). By the **Hille–Yosida / Lumer–Phillips theorem**, $\widehat{U}_t \equiv e^{-iH_\theta t}$ ($t \ge 0$) is a **strongly continuous ($C_0$) semigroup** on $\mathcal{H}$:
+The earlier corrigendum gave an explicit product of the form
+\[
+c\,e^{Q(s)}s(s-1)
+\prod_j\left[
+\left(s-\frac12\right)^2+r_j^2
+\right]
+\prod_n\left(s-\frac{\rho_n}{2}\right)
+\widetilde G_\infty(s).
+\tag{4.1}
+\]
 
-$$\widehat{U}_{t_1 + t_2} = \widehat{U}_{t_1} \widehat{U}_{t_2} \quad (t_1, t_2 \ge 0), \qquad \lim_{t \to 0^+} \|\widehat{U}_t \psi - \psi\|_{\mathcal{H}} = 0$$
+This expression was presented as a complete factorization without establishing the full zero divisor, the multiplicities, the convergence of the products, or the exact archimedean factor. It must not be treated as a proved Hadamard product.
 
-equipped with the exact Riesz spectral decomposition $\mathcal{H} = P_{z_0}\mathcal{H} \oplus (I - P_{z_0})\mathcal{H}$:
+The appropriate general statement is the following.
 
-$$\widehat{U}_t = e^{-iz_0 t} P_{z_0} + \widehat{U}_t (I - P_{z_0}), \qquad \|e^{-iz_0 t} P_{z_0}\| = \|P_{z_0}\| e^{-(\gamma/2)t}$$
+If \(Z(s)\) is an entire function of finite order at most two, with its zero divisor \(\{a_n\}\) counted with multiplicities and with any zero at the origin separated explicitly, its canonical product has the form
+\[
+Z(s)=s^m e^{Q(s)}
+\prod_{a_n\ne0} E_2\!\left(\frac{s}{a_n}\right),
+\tag{4.2}
+\]
+where
+\[
+E_2(w)=(1-w)\exp\left(w+\frac{w^2}{2}\right),
+\tag{4.3}
+\]
+and \(Q\) is a polynomial of degree at most two. If the actual order is lower, the required genus and degree can be reduced.
 
-#### Step 3: Lifting to the Liouville Transfer Semigroup $\widehat{\mathcal{L}}_t$
-On the Hilbert–Schmidt Liouville space $\mathcal{B}_2(\mathcal{H})$, define the dilated transfer propagator for $t \ge 0$:
+Equation (4.2) is a general structural form. It is not an explicit factorization of the modular Selberg zeta function until all of the following have been established:
 
-$$\widehat{\mathcal{L}}_t \rho \equiv \widehat{U}_t \rho \widehat{U}_t^\dagger = e^{-i\widehat{L}_\theta t} \rho, \qquad \widehat{L}_\theta \rho = H_\theta \rho - \rho H_\theta^\dagger$$
+- the complete zero divisor;
+- the multiplicity of every zero;
+- the precise order and genus;
+- the convergence of the canonical product;
+- the normalization of the exponential polynomial;
+- the exact treatment of the archimedean and topological factors.
 
-* **Semigroup & Boundedness:** Because $\widehat{U}_t$ is a $C_0$-semigroup on $\mathcal{H}$, $\widehat{\mathcal{L}}_t$ is a well-defined, strongly continuous $C_0$-semigroup on $\mathcal{B}_2(\mathcal{H})$ for all $t \ge 0$. Under the equivalent Riesz-adapted inner product $\langle \psi, \phi \rangle_{\mathrm{R}} = \langle P_{z_0}\psi, P_{z_0}\phi \rangle + \langle (I-P_{z_0})\psi, (I-P_{z_0})\phi \rangle$, $\widehat{\mathcal{L}}_t$ is **strictly contractive** ($\|\widehat{\mathcal{L}}_t\|_{\mathrm{R}} \le 1$ for all $t \ge 0$).
-* **Exact Relation to Original Unitary Liouville Evolution:** For every physical observable/test functional $\varphi \in \mathcal{B}_+$ and initial density matrix $\rho \in \mathcal{B}_-$ analytic in the sector $S_{\theta_0}$, analytic continuation in the dilation angle $\theta$ yields the exact identity:
+No product over the Maass spectrum and Riemann zeros should be inserted into (4.2) until the corresponding zero classification has been proved.
 
-$$\langle \varphi \mid e^{-iLt} \rho \rangle_{\mathcal{B}_2} = \langle U_{\bar{\theta}}\varphi \mid \widehat{\mathcal{L}}_t (U_\theta \rho) \rangle_{\mathcal{B}_2} \qquad \forall t \ge 0$$
+**Corrected status:** the previous explicit product (4.1) is withdrawn as an established identity.
 
-Equivalently, pulling $\widehat{\mathcal{L}}_t$ back to the dual rigged space $\mathcal{B}_-^\times$ via $(U_\theta^\dagger \widehat{\mathcal{L}}_t U_\theta)$ defines the canonical extension of $e^{-iLt}$ to generalized Gamow–Siegert states $\vert \psi_{z_0} \rangle\langle \psi_{z_0} \vert \in \mathcal{B}_-^\times$.
+## 5. Required next theorem for the zeta programme
 
-### 4. Terminology Correction
-In accordance with complex spectral deformation theory:
-* **Incorrect phrasing (Research Note I, §4.B):** Describing $z_0$ or $\zeta_1 = -i\gamma$ as eigenvalues *"embedded inside the deformed essential spectrum."*
-* **Corrected terminology:** In the undeformed Hilbert space, the resonance pole lies on the second Riemann sheet behind the unrotated continuous spectrum $[0, \infty)$. Upon complex spectral deformation $\mathbb{R}^+ \to \Gamma_\theta = e^{-i\theta}[0, \infty)$, the essential spectrum rotates *below* $z_0$, exposing $z_0 = \tilde{\omega}_1 - i\gamma/2$ (and in Liouville space, $\zeta_1 = z_0 - z_0^* = -i\gamma$) as an **isolated discrete eigenvalue of finite algebraic multiplicity separated from the rotated essential spectrum**.
+The central missing result is a theorem identifying the zero divisor of the Selberg zeta function with the proposed scattering-related divisor, including multiplicities and possible cancellations.
+
+A valid proof would need to:
+
+1. state the exact functional equation, including every gamma and normalization factor;
+2. identify the poles and zeros of the scattering determinant with their multiplicities;
+3. determine independently the zeros of \(Z_{\mathrm{Sel}}(s)\) and \(Z_{\mathrm{Sel}}(1-s)\);
+4. distinguish poles of the ratio from zeros of either factor;
+5. establish the claimed zero at \(s=\rho/2\), rather than infer it from a denominator pole;
+6. verify that the resulting zero classification is compatible with the determinant identity (1.1).
+
+Until this theorem is supplied, the Riemann-zero/Mayer-eigenvalue correspondence remains a research conjecture or an unverified proposed connection, not a result of the present derivation.
+
+---
+
+# Part II. Friedrichs complex deformation and semigroup claims
+
+## 6. Real dilation versus complex rotation
+
+The earlier corrigendum defined
+\[
+(U_\theta\psi)(\omega)
+=e^{-\theta/2}\psi(e^{-\theta}\omega)
+\tag{6.1}
+\]
+and described this as a complex dilation rotating the continuum to
+\[
+\Gamma_\theta=e^{-i\theta}\mathbb R^+.
+\]
+
+That is inconsistent: for real \(\theta\), (6.1) is a real dilation. It does not rotate the positive real axis into the lower complex plane.
+
+Introduce the real unitary dilation group
+\[
+(U(a)\psi)(\omega)
+=e^{-a/2}\psi(e^{-a}\omega),
+\qquad a\in\mathbb R.
+\tag{6.2}
+\]
+
+On an appropriate dense space of dilation-analytic vectors, analytically continue the parameter to \(a=i\theta\). The complex-scaled family is then
+\[
+(U(\theta)\psi)(\omega)
+=e^{-i\theta/2}\psi(e^{-i\theta}\omega).
+\tag{6.3}
+\]
+
+For real nonzero \(\theta\), \(U(\theta)\) is generally not a unitary operator on the original Hilbert space. Equation (6.3) is initially defined on an analytic core and requires a separate operator-theoretic construction or closure.
+
+The multiplication operator transforms as
+\[
+U(\theta)M_\omega U(\theta)^{-1}
+=e^{-i\theta}M_\omega.
+\tag{6.4}
+\]
+Thus the free continuum spectrum rotates to
+\[
+\Gamma_\theta=e^{-i\theta}[0,\infty).
+\tag{6.5}
+\]
+
+This is the correct complex-rotation convention.
+
+## 7. Corrected complex-scaled Friedrichs operator
+
+For the Hamiltonian (1.2), the formal complex-scaled operator is
+\[
+H_\theta=U(\theta)HU(\theta)^{-1}.
+\tag{7.1}
+\]
+
+On the analytic core, its action is
+\[
+H_\theta
+\begin{pmatrix}c\\\psi(\omega)\end{pmatrix}
+=
+\begin{pmatrix}
+\omega_1c+
+\lambda e^{-i\theta/2}
+\displaystyle\int_0^\infty
+\overline{V(e^{-i\theta}\omega)}
+\psi(\omega)\,d\omega\\[8pt]
+e^{-i\theta}\omega\psi(\omega)
++\lambda e^{-i\theta/2}V(e^{-i\theta}\omega)c
+\end{pmatrix}.
+\tag{7.2}
+\]
+
+This formula is the analytic continuation of the real-dilation conjugation. It must not be confused with a bounded similarity transformation on all of \(\mathcal H\).
+
+To apply complex spectral deformation, one must establish:
+
+- a dense analytic core;
+- analytic dependence on the deformation parameter;
+- a closed, densely defined deformed operator;
+- the relevant domain relations;
+- the hypotheses under which the essential spectrum rotates;
+- the meromorphic-continuation/resonance correspondence.
+
+Under the applicable dilation-analytic spectral-deformation hypotheses, the essential spectrum is rotated to \(\Gamma_\theta\). A resonance pole \(z_0\) lying above that ray can then appear as an isolated eigenvalue of the deformed operator.
+
+This is a statement about the deformed operator, not an assertion that the original self-adjoint Hamiltonian has a complex eigenvalue.
+
+## 8. Spectral location does not prove contractivity
+
+The earlier corrigendum argued that
+\[
+\sigma(H_\theta)\subset\{z:\operatorname{Im}z\le0\}
+\tag{8.1}
+\]
+and therefore that
+\[
+e^{-iH_\theta t},\qquad t\ge0,
+\]
+is a contractive \(C_0\)-semigroup.
+
+That inference is invalid in general for non-normal operators.
+
+The spectral bound controls the spectrum, but contractivity is an operator-norm property. A non-normal operator can have spectrum in the lower half-plane and still have transient norm growth.
+
+Let
+\[
+A=-iH_\theta.
+\]
+A sufficient route to a contraction semigroup on a Hilbert space is the Lumer–Phillips criterion:
+
+1. \(A\) is densely defined and closed;
+2. \(A\) is dissipative:
+   \[
+   \operatorname{Re}\langle\psi,A\psi\rangle\le0,
+   \qquad \psi\in D(A);
+   \tag{8.2}
+   \]
+3. for some (equivalently, all) \(\lambda>0\),
+   \[
+   \operatorname{Ran}(\lambda I-A)=\mathcal H.
+   \tag{8.3}
+   \]
+
+For \(A=-iH_\theta\), condition (8.2) is equivalent to
+\[
+\operatorname{Im}\langle\psi,H_\theta\psi\rangle\le0,
+\qquad \psi\in D(H_\theta).
+\tag{8.4}
+\]
+
+Both the numerical-range inequality and the range condition must be checked for the actual deformed Friedrichs operator.
+
+The complex-scaled interaction terms in (7.2) can contribute to the imaginary part of the quadratic form. The fact that the free continuum multiplication operator has non-positive imaginary part does not automatically control those interaction terms.
+
+Therefore the previous claim that \(iH_\theta\) is maximally dissipative is withdrawn until (8.2)–(8.3) have been proved.
+
+## 9. Riesz decomposition and adapted metrics
+
+If \(z_0\) is an isolated simple eigenvalue of \(H_\theta\), let \(P_{z_0}\) be its Riesz projection. The decomposition
+\[
+\mathcal H=P_{z_0}\mathcal H
+\oplus(I-P_{z_0})\mathcal H
+\tag{9.1}
+\]
+is generally a decomposition into closed, non-orthogonal subspaces.
+
+An equivalent inner product can be defined by
+\[
+\langle\psi,\phi\rangle_R
+=
+\langle P_{z_0}\psi,P_{z_0}\phi\rangle
++
+\langle(I-P_{z_0})\psi,(I-P_{z_0})\phi\rangle.
+\tag{9.2}
+\]
+
+This makes the two Riesz subspaces orthogonal in the new metric. It does not prove that the semigroup restricted to the complementary subspace is contractive.
+
+To establish contractivity in this metric, one must prove dissipativity of the generator in the new inner product and the corresponding range condition. The Riesz projection being bounded and the resonance component decaying exponentially are not sufficient.
+
+The exact decomposition
+\[
+e^{-iH_\theta t}
+=e^{-iz_0t}P_{z_0}
++e^{-iH_\theta t}(I-P_{z_0})
+\tag{9.3}
+\]
+is valid when the spectral projection commutes with the operator and the semigroup is defined. The estimate
+\[
+\|e^{-iz_0t}P_{z_0}\|
+=\|P_{z_0}\|e^{-\gamma t/2}
+\tag{9.4}
+\]
+controls the isolated resonance contribution, not the full semigroup norm.
+
+## 10. Liouville lift: conditional statement
+
+Suppose a closed operator \(H_\theta\) has been constructed and
+\[
+\widehat U_t=e^{-iH_\theta t},
+\qquad t\ge0,
+\]
+is a bounded strongly continuous semigroup on \(\mathcal H\).
+
+Then on Hilbert–Schmidt space one may define
+\[
+\widehat{\mathcal L}_t(\rho)
+=\widehat U_t\rho\widehat U_t^\dagger.
+\tag{10.1}
+\]
+
+This is a strongly continuous semigroup on \(\mathcal B_2(\mathcal H)\). On the natural generator domain, its generator is
+\[
+\frac{d\rho}{dt}
+=-iH_\theta\rho+i\rho H_\theta^\dagger
+=-i\widehat L_\theta\rho,
+\tag{10.2}
+\]
+where
+\[
+\widehat L_\theta\rho
+=H_\theta\rho-\rho H_\theta^\dagger.
+\tag{10.3}
+\]
+
+If \(\widehat U_t\) is contractive, then
+\[
+\|\widehat{\mathcal L}_t\rho\|_2
+\le\|\widehat U_t\|^2\|\rho\|_2
+\le\|\rho\|_2.
+\tag{10.4}
+\]
+
+Thus Liouville-space contractivity follows from the already established one-particle contraction property. It cannot be used to prove that property.
+
+The relation between the deformed propagator and the original physical unitary Liouville evolution must be formulated at the level of matrix elements on specified analytic test spaces. It requires a separate analytic-continuation argument, with the bra and ket deformation parameters and their adjoints treated consistently.
+
+The earlier claim of an exact identity for all stated test functionals is therefore conditional and is not retained as a theorem until its domains and analytic continuation are supplied.
+
+## 11. Terminology correction
+
+The following distinction must be maintained:
+
+- The original Friedrichs Hamiltonian \(H\) is self-adjoint on the physical Hilbert space. Its physical spectrum is real.
+- The resonance \(z_0\) is a pole of an analytically continued resolvent matrix element, not an ordinary eigenvalue of the original self-adjoint Hamiltonian.
+- Under suitable complex spectral deformation, \(z_0\) may become an isolated eigenvalue of \(H_\theta\), separated from the rotated essential spectrum.
+- In the Liouville lift, the corresponding resonance difference is
+  \[
+  z_0-z_0^*=-i\gamma.
+  \]
+  Its status depends on the deformed Liouville construction and its domain; it is not an ordinary non-real eigenvalue of the physical self-adjoint Liouvillian.
+
+The phrase “embedded inside the deformed essential spectrum” should not be used when the resonance is exposed as an isolated eigenvalue above the rotated continuum ray.
+
+---
+
+# Part III. Corrected research status and next steps
+
+## 12. Claims retained
+
+The following elements remain valid as a research foundation, subject to their stated hypotheses:
+
+1. The exact Friedrichs block resolvent and dispersion function.
+2. The second-sheet continuation
+   \[
+   \eta_+(z)=\eta(z)+2\pi i\lambda^2J(z).
+   \]
+3. The existence of a simple resonance pole as an explicit analytic hypothesis.
+4. The weak-coupling golden-rule width.
+5. The use of complex spectral deformation to expose resonances as isolated eigenvalues of a deformed operator, when the applicable analytic-deformation theorem applies.
+6. The formal Liouville lift once the one-particle semigroup has independently been established.
+7. The Fredholm determinant criterion relating zeros of the Selberg zeta function to the \(\pm1\) spectrum of the Mayer operator, subject to the exact determinant identity and operator-class assumptions.
+
+## 13. Claims withdrawn pending proof
+
+The following statements are not established by the previous arguments:
+
+1. That the real dilation formula rotates the continuum.
+2. That lower-half-plane spectral location alone implies maximal dissipativity.
+3. That the deformed Friedrichs propagator is contractive on the full Hilbert space.
+4. That the Riesz-adapted metric automatically makes the complementary semigroup contractive.
+5. That the displayed Liouville analytic-continuation identity holds on the full previously stated test spaces.
+6. That every non-trivial Riemann zero \(\rho\) gives a Selberg zero at \(\rho/2\), on the basis of the displayed functional equation alone.
+7. That the previous explicit Hadamard product is a complete factorization of the modular Selberg zeta function.
+
+## 14. Research tasks required to restore stronger claims
+
+### A. Friedrichs deformation
+
+1. Specify the analytic-vector space and the closed deformed operator \(H_\theta\).
+2. Establish the exact domain of \(H_\theta\).
+3. Compute or estimate the numerical range of \(H_\theta\).
+4. Prove dissipativity in the physical or an explicitly defined equivalent metric.
+5. Prove the range condition.
+6. Only then invoke Lumer–Phillips to obtain a contraction semigroup.
+7. Lift the established semigroup to Hilbert–Schmidt Liouville space.
+8. Prove the matrix-element identity relating the deformed and physical evolutions on a specified test space.
+
+### B. Mayer–Selberg–Riemann connection
+
+1. Fix the normalization of the Selberg zeta function, scattering determinant, and Mayer operator.
+2. State the exact determinant identity.
+3. Derive the complete functional equation with every archimedean factor.
+4. Determine the zero and pole divisors of both sides, including multiplicities.
+5. Establish or refute the proposed half-scaled zero correspondence independently of the ratio argument.
+6. Construct the canonical product only after the complete zero divisor and order are known.
+7. Separate any theorem about Selberg zeros from the still-open Riemann Hypothesis.
+
+---
+
+**Final status:** This corrigendum restores a defensible mathematical boundary between physical spectrum, analytically continued resonances, complex-scaled eigenvalues, contractive semigroups, and Fredholm-determinant zeros. It preserves the promising operator-theoretic direction while withdrawing conclusions that the current derivations do not yet support.
