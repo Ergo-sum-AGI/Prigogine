@@ -70,4 +70,4 @@ A reader coming to this repository fresh should read, in order:
 - **Superseded** — kept for provenance only.
 - **Working derivation / Working note / Foundational source / Supporting note** — the file is a piece of the derivation chain rather than a stage-level reference; read it in context.
 - **Corrective note / Corrigendum** — the file exists to record a correction to another file. Read it alongside its target.
-- **Reference / Hand-over / Peripheral** — not part of the live derivation chain.
+- **Reference / Hand-over / Programme statement / origin** — not part of the live derivation chain yet instrumental or foundational.
