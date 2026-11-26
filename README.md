@@ -49,16 +49,18 @@ what would need to happen next if the line of work were resumed.
 | `microscopic_theory_of_irreversible_processes_equations.md` | Reference | Equation register for Prigogine–Mayné–George–De Haan (1977). |
 | `microscopic_theory_of_irreversible_processes_full_transcription.md` | Reference | Full transcription of the 1977 PNAS paper. |
 | `research_legacy_note_friedrichs_liouville.md` | Hand-over note (legacy) | Legacy note. Useful for orientation; not maintained. |
-| `tough-millennium-problem-solved.md` | Peripheral | Not part of the main line of work. Kept for completeness. |
+| `tough-millennium-problem-solved.md` | Programme statement / origin | Poses the research question the repository addresses: whether there exists a common spectral formulation of dynamical complexity and thermodynamic irreversibility, with the Ruelle transfer operator and Prigogine's non-unitary transformation as complementary aspects. Names the Friedrichs model as the first controlled test case (implemented as Research Note I) and the Riemann zeta function as the longer-range target. Written as a research-diary entry, not a publication. |
 
 ## Reading order
 
 A reader coming to this repository fresh should read, in order:
 
-1. `friedrichs_stage1_single_particle_foundation.md` — the one-particle foundation.
-2. `Stage 2-Liouville Spectral Organization of the Friedrichs Model (corrected).md` — the Liouville lift.
-3. `friedrichs_transfer_operator_note1.tex` and `friedrichs_zeta_note2.tex` — the two side investigations, read *together with* `corrigendum_friedrichs_zeta.md` and `Correction to Corrigendum.md`, since the corrigenda qualify claims in both notes.
-4. `Stage 3-Spectral-Coordinate and Metric ConstructionI.md` — the current frontier, with its known open issue.
+1. `tough-millennium-problem-solved.md` — the research question.
+2. `friedrichs_stage1_single_particle_foundation.md` — the one-particle foundation for the controlled experiment.
+3. `Stage 2-Liouville Spectral Organization of the Friedrichs Model (corrected).md` — the Liouville lift.
+4. `friedrichs_transfer_operator_note1.tex` and `friedrichs_zeta_note2.tex` — the transfer-operator side of the controlled experiment (this is the "next step" the origin file names)
+5. `corrigendum_friedrichs_zeta.md` and `Correction to Corrigendum.md`, since the corrigenda qualify claims in both notes.
+6. `Stage 3-Spectral-Coordinate and Metric ConstructionI.md` — the current frontier, with its known open issue.
 
 ## Status conventions
 
