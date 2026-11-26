@@ -1,8 +1,8 @@
 # friedrichs_stage1_single_particle_foundation.md
 # Stage 1 — Single-Particle Friedrichs Model: Resolvent, Resonance Continuation, and Spectral Resolution
 
-**Status:** Reconstructed foundation; proof audit in progress  
-**Source:** `friedrichs_biorthogonal_completeness_note3.md` and the associated Friedrichs-model derivations  
+**Status:** Reconstructed foundation; proof audit in progress (revision 2)
+**Source:** `friedrichs_biorthogonal_completeness_note3.md` and the associated Friedrichs-model derivations
 **Role in the research programme:** Establish the one-particle spectral structure on which the Liouville-space construction in Stage 2 is built.
 
 ---
@@ -248,7 +248,13 @@ Let
 \[
 \Gamma_\theta=e^{-i\theta}\mathbb R^+
 \]
-be oriented from zero to infinity.
+be oriented from zero to infinity. The two boundary values of analytic functions across \(\Gamma_\theta\) are denoted
+\[
+f_\mp(\zeta)=f(\zeta\mp i0_\theta),
+\qquad \zeta\in\Gamma_\theta,
+\tag{3.7}
+\]
+where \(i0_\theta\) denotes the boundary value relative to the oriented ray \(\Gamma_\theta\) (see Section 7 for the explicit prescription and the oriented Sokhotski–Plemelj identity).
 
 Under sufficient analyticity and decay to justify contour deformation, (3.5) can be written as
 \[
@@ -257,7 +263,7 @@ Under sufficient analyticity and decay to justify contour deformation, (3.5) can
 \overline{c_-}
 +\lambda\int_{\Gamma_\theta}
 \frac{V(\zeta)\phi_-^*(\zeta)}{z-\zeta}\,d\zeta,
-\tag{3.7a}
+\tag{3.8a}
 \]
 \[
 \mathcal A_+^{\mathrm{cont}}(z;\phi_+)
@@ -266,7 +272,7 @@ c_+
 +\lambda\int_{\Gamma_\theta}
 \frac{\overline{V(\bar\zeta)}\phi_+(\zeta)}
 {z-\zeta}\,d\zeta.
-\tag{3.7b}
+\tag{3.8b}
 \]
 
 Likewise,
@@ -274,10 +280,10 @@ Likewise,
 \eta_+(z)=z-\omega_1-
 \lambda^2\int_{\Gamma_\theta}
 \frac{J(\zeta)}{z-\zeta}\,d\zeta.
-\tag{3.8}
+\tag{3.9}
 \]
 
-The equalities (3.7)–(3.8) require the contour to avoid the evaluation point and the relevant integrands to satisfy the necessary threshold and large-arc bounds.
+The equalities (3.8)–(3.9) require the contour to avoid the evaluation point and the relevant integrands to satisfy the necessary threshold and large-arc bounds.
 
 ## 4. Resonance pole and weak-coupling width
 
@@ -330,7 +336,7 @@ For \(z\) in the upper half-plane,
 \tag{5.3}
 \]
 
-Deforming the continued upper-boundary contribution from \(\mathbb R^+\) to \(\Gamma_\theta\) crosses the pole \(z_0\). With the orientation in (3.7), the result is
+Deforming the continued upper-boundary contribution from \(\mathbb R^+\) to \(\Gamma_\theta\) crosses the pole \(z_0\). With the orientation in (3.8), the result is
 \[
 \begin{aligned}
 \langle\phi_-|R(z)|\phi_+\rangle
@@ -395,22 +401,38 @@ The analytic left functional is not the Hilbert adjoint of the right resonance f
 
 ## 7. Deformed-continuum functionals
 
-For \(\zeta\in\Gamma_\theta\setminus\{0\}\), the source note proposes the factorization
+For \(\zeta\in\Gamma_\theta\setminus\{0\}\), let
+\[
+\eta_-(\zeta)=\eta(\zeta-i0_\theta),
+\qquad
+\eta_+(\zeta)=\eta(\zeta+i0_\theta)
+\tag{7.1}
+\]
+denote the lower and upper boundary values relative to the oriented ray \(\Gamma_\theta\). Here \(i0_\theta\) denotes the boundary value relative to \(\Gamma_\theta\): parameterising \(\zeta=xe^{-i\theta}\) with \(x>0\),
+\[
+\frac{1}{\zeta-\zeta'-i0_\theta}\pm\frac{1}{\zeta-\zeta'+i0_\theta}
+=\mathcal P\int_{\Gamma_\theta}\frac{d\zeta'}{\zeta-\zeta'}\mp i\pi\,\delta_{\Gamma_\theta}(\zeta-\zeta'),
+\tag{7.2}
+\]
+with \(\delta_{\Gamma_\theta}\) the contour delta defined by \(\int_{\Gamma_\theta}\delta_{\Gamma_\theta}(\zeta-\zeta')f(\zeta')\,d\zeta'=f(\zeta)\), equivalently \(e^{+i\theta}\delta(x-x')\) in the radial variable.
+
+The source note proposes the resolvent jump factorization
 \[
 \frac1{2\pi i}
 \langle\phi_-|[R(\zeta)-R_+(\zeta)]|\phi_+\rangle
 =
 \langle\phi_-|\psi_\zeta^R\rangle
-\langle\psi_\zeta^L|\phi_+\rangle.
-\tag{7.1}
+\langle\psi_\zeta^L|\phi_+\rangle,
+\tag{7.3}
 \]
+for \(\zeta\in\Gamma_\theta\setminus\{0\}\), where the two resolvent boundary values are \(R(\zeta)=R(\zeta-i0_\theta)\) and \(R_+(\zeta)=R(\zeta+i0_\theta)\).
 
-The proposed functionals are
+The corrected deformed-continuum functionals are
 \[
 \begin{aligned}
 \langle\phi_-|\psi_\zeta^R\rangle
 ={}&\phi_-^*(\zeta)
-+\frac{\lambda V(\zeta)}{\eta_+(\zeta)}
++\frac{\lambda\overline{V(\bar\zeta)}}{\eta_-(\zeta)}
 \left[
 \overline{c_-}
 +\lambda\int_{\Gamma_\theta}
@@ -418,14 +440,14 @@ The proposed functionals are
 {\zeta-\zeta'-i0_\theta}\,d\zeta'
 \right],
 \end{aligned}
-\tag{7.2a}
+\tag{7.4a}
 \]
 and
 \[
 \begin{aligned}
 \langle\psi_\zeta^L|\phi_+\rangle
 ={}&\phi_+(\zeta)
-+\frac{\lambda\overline{V(\bar\zeta)}}{\eta(\zeta)}
++\frac{\lambda V(\zeta)}{\eta_+(\zeta)}
 \left[
 c_+
 +\lambda\int_{\Gamma_\theta}
@@ -433,14 +455,18 @@ c_+
 {\zeta-\zeta'+i0_\theta}\,d\zeta'
 \right].
 \end{aligned}
-\tag{7.2b}
+\tag{7.4b}
 \]
 
-Here \(i0_\theta\) denotes the boundary value relative to the oriented ray \(\Gamma_\theta\).
+**Proof status: to prove (factorization).** While the conjugation pairing and \(\eta_\mp(\zeta)\) denominator assignments in (7.4a)–(7.4b) are uniquely forced by the generalized eigenvalue equations (see Section 8), the resolvent jump factorization (7.3) is a logically distinct statement. It must be derived directly by substituting all four blocks of the resolvent (2.1), taking the two boundary values on the deformed contour, and verifying the resulting kernel—including the contour delta distributions and their Jacobians—rather than inferring it by analogy with the real-axis Lippmann–Schwinger formula.
 
-**Proof status: to prove.** The factorization (7.1) must be derived by substituting all four blocks of the resolvent (2.1), taking the two boundary values on the deformed contour, and verifying the resulting kernel exactly. It must not be inferred merely by analogy with the real-axis Lippmann–Schwinger formula.
-
-In particular, the prescriptions, the factors \(\eta_+(\zeta)\) and \(\eta(\zeta)\), and the orientation-dependent delta contribution must all be checked together.
+A block-by-block verification of (7.3) from the corrected expressions (7.4) is carried out in the accompanying note `To establish the continuum resolvent jump.txt`; the key algebraic mechanism is that the discrete-sector jump
+\[
+\frac{1}{\eta_-(\zeta)}-\frac{1}{\eta_+(\zeta)}
+=\frac{2\pi i\lambda^2J(\zeta)}{\eta_-(\zeta)\eta_+(\zeta)}
+\tag{7.5}
+\]
+supplies the numerator that lets the four blocks reassemble into the rank-one product in (7.4). Had the coupling factors \(V(\zeta)\) and \(\overline{V(\bar\zeta)}\) been assigned to the opposite functionals, the cross-terms in the discrete–continuum and continuum–discrete blocks would have mismatched the numerator of (7.5) and factorization would fail.
 
 ## 8. Generalized eigenvalue equations
 
@@ -482,14 +508,23 @@ z_0-\omega_1
 \tag{8.4}
 \]
 
-For the continuum functionals, the corresponding identity is
+For the continuum functionals (7.4a)–(7.4b), testing against \(H\phi_-\) (with bra-side Schwarz reflection \(\overline{(H\phi_-)(\bar\zeta)}=\zeta\phi_-^*(\zeta)+\lambda\overline{V(\bar\zeta)}\,\overline{c_-}\)) and \(H\phi_+\) (with ket-side action \((H\phi_+)(\zeta)=\zeta\phi_+(\zeta)+\lambda V(\zeta)c_+\)) uses the boundary identity
 \[
 \frac{\zeta'}{\zeta-\zeta'\mp i0_\theta}
-=-1+\frac{\zeta}{\zeta-\zeta'\mp i0_\theta}.
+=-1+\frac{\zeta}{\zeta-\zeta'\mp i0_\theta},
 \tag{8.5}
 \]
+together with the contour boundary dispersion relations
+\[
+\zeta-\omega_1
+-\lambda^2\int_{\Gamma_\theta}
+\frac{J(\zeta')}{\zeta-\zeta'\mp i0_\theta}\,d\zeta'
+=\eta_\mp(\zeta).
+\tag{8.6}
+\]
+In (8.2a), the inhomogeneous \(\overline{c_-}\) terms cancel precisely because the prefactor \(\lambda\overline{V(\bar\zeta)}/\eta_-(\zeta)\) pairs the reflected coupling with \(\eta_-(\zeta)\); symmetrically, in (8.2b), the \(c_+\) terms cancel because \(\lambda V(\zeta)/\eta_+(\zeta)\) pairs the unreflected coupling with \(\eta_+(\zeta)\).
 
-**Proof status:** the resonance calculation is reducible to (8.3)–(8.4), once all test-space and contour operations are justified. The continuum calculation remains conditional on the exact factorization (7.1) and correct treatment of the contour boundary distributions.
+**Proof status.** Both the resonance (8.1) and continuum (8.2) eigenvalue equations reduce directly to the algebraic identities (8.3)–(8.6) once the analytic test-space domain invariance under \(H\) and contour boundary operations are justified. Note that the eigenvalue equations fix the *pairings* in (7.4); they do not by themselves establish the factorization (7.3), which remains a separate obligation (Section 7).
 
 ## 9. Completeness and forward-time representation
 
@@ -507,7 +542,7 @@ The intended weak completeness relation is
 \tag{9.1}
 \]
 
-If (5.4) and (7.1) hold, this follows formally by multiplying the resolvent representation by \(z\) and taking \(z=iy\), \(y\to+\infty\), using
+If (5.4) and (7.3) hold, this follows formally by multiplying the resolvent representation by \(z\) and taking \(z=iy\), \(y\to+\infty\), using
 \[
 iy\,R(iy)\longrightarrow I
 \]
@@ -517,7 +552,7 @@ The limit on the contour side requires a dominated-convergence argument. In part
 - local integrability at \(\zeta=0\);
 - sufficient decay at infinity;
 - a bound permitting the limit to pass through the contour integral;
-- control of any boundary distributions in (7.2).
+- control of any boundary distributions in (7.4).
 
 Thus (9.1) is a **conditional completeness theorem** until those estimates are supplied.
 
@@ -546,7 +581,7 @@ The resonance term decays as \(e^{-\gamma t/2}\) at the amplitude level. The con
 
 ## 10. Bare-state sum rule
 
-The bare state \(|1\rangle\) has \(c=1\) and vanishing continuum component. The proposed functionals give
+The bare state \(|1\rangle\) has \(c=1\) and vanishing continuum component. Evaluating (6.2) and the corrected continuum functionals (7.4) on \(|1\rangle\) gives
 \[
 \langle1|\psi_{z_0}^R\rangle=\sqrt{A_1},
 \qquad
@@ -555,10 +590,10 @@ The bare state \(|1\rangle\) has \(c=1\) and vanishing continuum component. The 
 \]
 \[
 \langle1|\psi_\zeta^R\rangle
-=\frac{\lambda V(\zeta)}{\eta_+(\zeta)},
+=\frac{\lambda\overline{V(\bar\zeta)}}{\eta_-(\zeta)},
 \qquad
 \langle\psi_\zeta^L|1\rangle
-=\frac{\lambda\overline{V(\bar\zeta)}}{\eta(\zeta)}.
+=\frac{\lambda V(\zeta)}{\eta_+(\zeta)}.
 \tag{10.2}
 \]
 
@@ -567,11 +602,13 @@ If completeness (9.1) is established, then
 1=A_1+
 \int_{\Gamma_\theta}
 \frac{\lambda^2J(\zeta)}
-{\eta_+(\zeta)\eta(\zeta)}\,d\zeta.
+{\eta_-(\zeta)\eta_+(\zeta)}\,d\zeta.
 \tag{10.3}
 \]
 
-This is the bare-state spectral sum rule. It is a useful normalization and consistency check on the contour deformation.
+This is the bare-state spectral sum rule. It serves as a normalization and consistency check on the contour deformation.
+
+Note that in (10.2) the continuum functionals of \(|1\rangle\) carry the *same* \(\eta_\mp\) denominators and coupling factors as in (7.4). This is the non-trivial consequence of the corrected pairings: the pre-correction version would have given \(\langle1|\psi_\zeta^R\rangle=\lambda V(\zeta)/\eta_+(\zeta)\), which is *not* the correct value and is incompatible with (7.5).
 
 ## 11. Threshold and large-energy estimates
 
@@ -597,7 +634,7 @@ Consequently, \(\eta^{-1}\) and \(\eta_+^{-1}\) are bounded in a sufficiently sm
 
 If the analytic test functions are bounded there, the local factors in the single-continuum integrands are integrable under (11.1). Double-contour integrals require the corresponding product estimates.
 
-These threshold bounds do not replace the large-energy estimates. The latter must be stated for the actual integrands in (3.7), (7.2), and (9.1), and must be strong enough to justify contour deformation, Fubini/Tonelli interchange where used, and dominated convergence.
+These threshold bounds do not replace the large-energy estimates. The latter must be stated for the actual integrands in (3.8), (7.4), and (9.1), and must be strong enough to justify contour deformation, Fubini/Tonelli interchange where used, and dominated convergence.
 
 ## 12. Weak-coupling threshold tails
 
@@ -611,9 +648,9 @@ and the relevant denominators have finite nonzero limits at threshold. Then a si
 \[
 w(\omega)=
 \frac{\lambda^2J(\omega)}
-{\eta_+(\omega)\eta(\omega)}
+{\eta_-(\omega)\eta_+(\omega)}
 \]
-has leading behaviour \(w(\omega)\sim c\omega^{1/2}\).
+has leading behaviour \(w(\omega)\sim c\omega^{1/2}\). (Here \(\eta_\mp(\omega)=\eta(\omega\mp i0)\) are the real-axis boundary values; on the positive real axis the notation coincides with (7.1) restricted to \(\theta=0\).)
 
 The endpoint contribution to a Fourier/Laplace integral therefore behaves, under the usual smoothness and non-cancellation conditions, as
 \[
@@ -655,10 +692,10 @@ The construction of \(\Lambda^{-1}\), its inverse, star-unitarity, the induced m
 | Analytic test space | Specify a dense nuclear space invariant under the operations used, with continuity of all evaluation and contour functionals. |
 | Continuation | Prove the boundary-jump signs and analytic continuation for every factor in the matrix-element resolvent. |
 | Contour deformation | Establish large-arc decay and threshold integrability for the actual integrands. |
-| Continuum jump factorization | Derive (7.1) directly from all four resolvent blocks, including the \(i0_\theta\) distributions. |
-| Generalized eigenvalue equations | Complete the continuum calculation, including contour boundary terms. |
+| Continuum jump factorization | Derive (7.3) directly from all four resolvent blocks and the corrected functionals (7.4), including the \(i0_\theta\) distributions and Jacobians; the block-by-block computation in `To establish the continuum resolvent jump.txt` is the proposed proof, pending test-space justification. |
+| Generalized eigenvalue equations | Continuum calculation now reduces to (8.3)–(8.6); the remaining obligation is the analytic test-space domain invariance. |
 | Completeness | Prove the dominated-convergence bound needed to pass \(z=iy\to i\infty\) through the deformed-continuum integral. |
-| Biorthogonality | Derive the distributional relations independently; do not infer them from completeness alone. |
+| Biorthogonality | Derive the distributional relations independently of completeness. The off-diagonal vanishing follows from the eigenvalue equations (8.1)–(8.2); the diagonal normalization \(\langle\psi_{z_0}^L|\psi_{z_0}^R\rangle=1\) and \(\langle\psi_\zeta^L|\psi_{\zeta'}^R\rangle=\delta_{\Gamma_\theta}(\zeta-\zeta')\) are conditional on the nuclear test space and should be verified in the test-space pairing, not inferred from (9.1) alone. |
 | Bare-state sum rule | Verify (10.3) after the preceding completeness proof is complete. |
 
-**Stage 1 conclusion:** The exact Friedrichs resolvent, its second-sheet dispersion function, and the resonance residue provide a sound starting point. The resonance-plus-continuum expansion is a promising and structurally appropriate representation, but its full theorem-level status depends on completing the continuum factorization, endpoint estimates, and distributional completeness/biorthogonality proofs.
+**Stage 1 conclusion:** The exact Friedrichs resolvent, its second-sheet dispersion function, and the resonance residue provide a sound starting point. The resonance-plus-continuum expansion is a promising and structurally appropriate representation. The corrected functionals (7.4) remove an algebraic inconsistency that would otherwise have prevented the generalized eigenvalue equations (8.2) from holding; the explicit block-by-block computation in `To establish the continuum resolvent jump.txt` supplies the resolvent jump factorization (7.3) with the corrected pairing. Full theorem-level status still depends on completing the endpoint estimates, the distributional completeness/biorthogonality proofs, and the specification of the nuclear test space.
